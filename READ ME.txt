@@ -1,0 +1,9 @@
+:: Name: run-me.cmd
+:: Purpose: Download and install Citrix Workspace and modify registry to allow barcode scanners to be connected.
+:: Revision: April 2021 - initial version
+:: Summary:
+::   You can just double click "run-me.cmd", no need to right-click and run as admin.
+::   Please be patient as it can take some time to run the script, download Citrix, do the install, and modify the registry.
+::   Most of the process is silent so you will not see anything pop up for the most part.
+::   Please see the logs in C:\Logs to watch progress. The main log is called "Install Citrix Workspace app.log".
+::   Once the installer is done, you can then launch Citrix Workspace from the Start Menu.
