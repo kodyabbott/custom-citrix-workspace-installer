@@ -5,6 +5,8 @@
 # Date  : 16.03.2020
 # Editor: Microsoft Visual Studio Code
 # Citrix Workspace app versions supported by this script: ALL
+# Modified by: Kody Abbott
+# Date: 01.05.2021
 #==========================================================================
 
 # Error handling
@@ -20,7 +22,8 @@ $LogFile = Join-Path $LogDir "Install Citrix Workspace app.log"                #
 $StartDir = $PSScriptRoot                                                      # the directory path of the installation file(s). $PSScriptRoot is the directory of the current script.
 $InstallFileName = "CitrixWorkspaceApp.exe"                                    # the name of the installation file. Options: 'CitrixWorkspaceApp.exe' or 'CitrixWorkspaceAppWeb.exe'.
 $InstallArguments = "/silent" # the command line arguments for the installation file
-$GenericUSBDeviceRules = "genericusb.reg" # the name of the registry file containing the Generic USB Device Rule settings
+$GenericUSBDeviceRules = "genericusb.reg" # the name of the registry file containing the Generic USB Device Rule settings - Modified a section from the original script to import registry key to allow for certain USB devices as we could not do it via GPO for endpoints - Kody Abbott
+
 
 # Create the log directory if it does not exist
 if (!(Test-Path $LogDir)) { New-Item -Path $LogDir -ItemType directory | Out-Null }
@@ -154,6 +157,7 @@ WriteToLog "-" "" $LogFile
 ############################
 
 # Optional: import the import the Generic USB Device Rules. This allows for USB Class 02 Devices, VID 0536, and VID 0C2E to be connected to Citrix Workspace.
+#Modified this section from the original script to import registry key to allow for certain USB devices as we could not do it via GPO for endpoints - Kody Abbott
 $RegFile = Join-Path $StartDir $GenericUSBDeviceRules
 WriteToLog "I" "Optional: import the Generic USB Device Rules. This allows for USB Class 02 Devices, VID 0536, and VID 0C2E to be connected to Citrix Workspace." $LogFile
 WriteToLog "I" "Import registry file '$RegFile'" $LogFile
